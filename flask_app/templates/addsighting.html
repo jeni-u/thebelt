@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Sighting</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+  <a href="/dashboard">Dashboard</a>
+  <a href="/logout">Logout</a>
+  <form action="/create/sighting" method="POST" class="w-50 pt-5">
+    <div class="form-group">
+      <label for="location">Location: </label>
+      <input type="text" name="location" id="location" class="form-control">
+    </div>
+    {% with messages = get_flashed_messages(category_filter=["location"]) %}
+    {% if messages %}
+      {% for message in messages %}
+      <p class="text-danger text-center">{{ message }}</p>
+      {% endfor %}
+    {% endif %}
+    {% endwith %}
+    
+    <div class="form-group">
+      <label for="what_happened">What Happened:</label>
+      <textarea name="what_happened" id="what_happened" class="form-control"></textarea>
+      {% with messages = get_flashed_messages(category_filter=["what_happened"]) %}
+      {% if messages %}
+        {% for message in messages %}
+        <p class="text-danger text-center">{{ message }}</p>
+        {% endfor %}
+      {% endif %}
+      {% endwith %}
+    </div>
+
+    <div class="form-group">
+      <label for="date_of_sighting">Date:</label>
+      <input type="date" name="date_of_sighting" id="date_of_sighting" class="form-control" >
+    </div>
+    {% with messages = get_flashed_messages(category_filter=["date_of_sighting"]) %}
+    {% if messages %}
+        
+        {% for message in messages %}
+        <p class="text-danger text-center">{{ message }}</p>
+        {% endfor %}
+        
+    {% endif %}
+    {% endwith %}
+    <div class="form-group">
+      <label for="nr_of_sas">Number of Sasquatches:</label>
+      <input type="number" name="nr_of_sas" id="nr_of_sas" class="form-control" min="1" required>
+      {% with messages = get_flashed_messages(category_filter=["nr_of_sas"]) %}
+      {% if messages %}
+          {% for message in messages %}
+          <p class="text-danger text-center">{{ message }}</p>
+          {% endfor %}
+      {% endif %}
+      {% endwith %}
+  </div>
+
+  <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</body>
+</html>
